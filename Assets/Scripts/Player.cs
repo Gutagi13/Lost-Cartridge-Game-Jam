@@ -51,6 +51,7 @@ public class Player : MonoBehaviour
 
         print("Gravity: " + gravity + "; Jump Velocity: " + maxJumpVelocity);
 
+        Application.targetFrameRate = 60;
     }
 
     void Update()
