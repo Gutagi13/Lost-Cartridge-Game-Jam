@@ -52,6 +52,12 @@ public class Player : MonoBehaviour
     public int stunTime;
     public int frameRate;
 
+    public Sprite[] walkF;
+    public Sprite[] attackF;
+    public Sprite hitF;
+    int frameCount;
+    bool isAttacking;
+
     void Start()
     {
         controller = GetComponent<Controller2D>();
@@ -93,17 +99,39 @@ public class Player : MonoBehaviour
         timeSinceGround = controller.collisions.below ? 0 : timeSinceGround +Time.deltaTime;
         timeSinceWall = wallSliding ? 0 : timeSinceWall + Time.deltaTime;
 
+        frameCount++;
+        int frame = Mathf.RoundToInt((float)frameCount / 30 * frameRate);
+        Sprite currentFrame = walkF[frame % walkF.Length];
+        if (directionalInput.x==0)
+        {
+            currentFrame = walkF[1];
+
+        }
+        if(isAttacking)
+        {
+            currentFrame = attackF[frame % attackF.Length];
+            if (frame == 5)
+            {
+                isAttacking = false;
+            }
+        }
+
+
         if (Input.GetMouseButtonDown(0))
         {
             GetComponentInChildren<CapsuleCollider2D>().OverlapCollider(cF, c);
-            foreach(Collider2D col in c)
+            isAttacking = true;
+            frameCount = -1;
+            foreach (Collider2D col in c)
             {
                 if (col.gameObject.TryGetComponent(out CombatSystem combat))
                 {
-                    combat.hit((int)Mathf.Sign(col.transform.position.x-transform.position.x),knockback);
+                    combat.hit((int)Mathf.Sign(col.transform.position.x - transform.position.x), knockback);
                 }
             }
         }
+
+        GetComponentInChildren<SpriteRenderer>().sprite = currentFrame;
 
         if (gotHit)
         {

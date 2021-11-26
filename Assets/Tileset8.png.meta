@@ -1,34 +1,40 @@
 fileFormatVersion: 2
-guid: 3a8727ef6a68dac4095543fece37e621
+guid: daa5ce9cc0c86004e842c8a90f20c247
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2311659948842064771
-    second: Player_Walk_1
+      213: 4216583847282646258
+    second: Chest
   - first:
-      213: 7364682651488144517
-    second: Player_Walk_2
+      213: 4513355250475275219
+    second: Coin
   - first:
-      213: -6287787046888575383
-    second: Player_Walk_3
+      213: -5430523696911071753
+    second: Key
   - first:
-      213: -1182821291677670348
-    second: Player_Walk_4
+      213: 5350173395393580331
+    second: Flag
   - first:
-      213: -4709456396536258026
-    second: Player_Attack_1
+      213: -4448940976742782777
+    second: GrassBlade
   - first:
-      213: -4529042392078601758
-    second: Player_Attack_2
+      213: -156267496422499661
+    second: Spikes
   - first:
-      213: -7446026091647042388
-    second: Player_Attack_3
+      213: -7758203806810250025
+    second: Sky1
   - first:
-      213: 5938012242645255967
-    second: Player_Attack_4
+      213: -8668519813246922728
+    second: Sky2
   - first:
-      213: -4245738604243887485
-    second: Player_Dead
+      213: -4260642266627269265
+    second: Sky3
+  - first:
+      213: -1092650081854694856
+    second: Sky4
+  - first:
+      213: 5438664863725262677
+    second: Sky5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -73,7 +79,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 8
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -140,97 +146,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player_Walk_1
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 24
-        width: 8
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d7465c336855befd0800000000000000
-      internalID: -2311659948842064771
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_Walk_2
-      rect:
-        serializedVersion: 2
-        x: 8
-        y: 24
-        width: 8
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 58cce6d0adb943660800000000000000
-      internalID: 7364682651488144517
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_Walk_3
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 24
-        width: 8
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 96e67e6befa4db8a0800000000000000
-      internalID: -6287787046888575383
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_Walk_4
-      rect:
-        serializedVersion: 2
-        x: 24
-        y: 24
-        width: 8
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 434a8c45d46c59fe0800000000000000
-      internalID: -1182821291677670348
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_Attack_1
+      name: Chest
       rect:
         serializedVersion: 2
         x: 0
         y: 8
         width: 8
-        height: 16
+        height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -238,20 +160,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 612e34feb56a4aeb0800000000000000
-      internalID: -4709456396536258026
+      spriteID: 2fc9eee2ba0548a30800000000000000
+      internalID: 4216583847282646258
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Attack_2
+      name: Coin
       rect:
         serializedVersion: 2
         x: 8
         y: 8
         width: 8
-        height: 16
+        height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -259,20 +181,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2e13877b0fb9521c0800000000000000
-      internalID: -4529042392078601758
+      spriteID: 3d319b100b8a2ae30800000000000000
+      internalID: 4513355250475275219
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Attack_3
+      name: Key
       rect:
         serializedVersion: 2
         x: 16
         y: 8
         width: 8
-        height: 16
+        height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -280,20 +202,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cac761b68b66aa890800000000000000
-      internalID: -7446026091647042388
+      spriteID: 7f546454877e2a4b0800000000000000
+      internalID: -5430523696911071753
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Attack_4
+      name: Flag
       rect:
         serializedVersion: 2
         x: 24
         y: 8
         width: 8
-        height: 16
+        height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -301,19 +223,61 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f178aca7cae086250800000000000000
-      internalID: 5938012242645255967
+      spriteID: b2d0e2f4b52af3a40800000000000000
+      internalID: 5350173395393580331
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Dead
+      name: GrassBlade
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 8
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c8219ec0cf2242c0800000000000000
+      internalID: -4448940976742782777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spikes
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 8
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ba1cc93a83d4ddf0800000000000000
+      internalID: -156267496422499661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sky1
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
+        width: 8
         height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -322,8 +286,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 38a51ecfb3b1415c0800000000000000
-      internalID: -4245738604243887485
+      spriteID: 7d4edff0eb2555490800000000000000
+      internalID: -7758203806810250025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sky2
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8105bfa582b33b780800000000000000
+      internalID: -8668519813246922728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sky3
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6d9aaeae682fd4c0800000000000000
+      internalID: -4260642266627269265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sky4
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83adf372a8026d0f0800000000000000
+      internalID: -1092650081854694856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sky5
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5571eb6d0e40a7b40800000000000000
+      internalID: 5438664863725262677
       vertices: []
       indices: 
       edges: []
