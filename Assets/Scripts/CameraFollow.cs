@@ -23,6 +23,8 @@ public class CameraFollow : MonoBehaviour
     public bool onlyX;
     public float camY;
 
+    public AudioClip music;
+
     void Start()
     {
         focusArea = new FocusArea(target.collider.bounds, focusAreaSize);
