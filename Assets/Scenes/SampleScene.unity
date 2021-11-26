@@ -2872,6 +2872,7 @@ GameObject:
   - component: {fileID: 845841515}
   - component: {fileID: 845841514}
   - component: {fileID: 845841520}
+  - component: {fileID: 845841517}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -2902,8 +2903,27 @@ MonoBehaviour:
   wallJumpClimb: {x: 16, y: 16}
   wallJumpOff: {x: 15, y: 7}
   wallLeap: {x: 25, y: 15}
+  gravity: 0
   velocity: {x: 0, y: 0, z: 0}
   coyoteTime: 0.1
+  cF:
+    useTriggers: 1
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 1024
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  knockback: {x: 3, y: 8}
+  gotHit: 0
+  stunTime: 32
+  frameRate: 8
 --- !u!114 &845841515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2952,6 +2972,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &845841517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845841513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1e805db947867945908b9a20c1e1a94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &845841519
 Transform:
   m_ObjectHideFlags: 0
@@ -2965,6 +2997,7 @@ Transform:
   m_Children:
   - {fileID: 1967412984}
   - {fileID: 633716107}
+  - {fileID: 1560909874}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2980,6 +3013,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ce2722ad3ae5be459f61acd7b0ff9d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1560909873
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1560909874}
+  - component: {fileID: 1560909875}
+  m_Layer: 0
+  m_Name: Attack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1560909874
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560909873}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.79, y: 0.12, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 845841519}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &1560909875
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560909873}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 2.19, y: 1.23}
+  m_Direction: 1
 --- !u!1 &1604620836
 GameObject:
   m_ObjectHideFlags: 0
@@ -3273,7 +3353,8 @@ GameObject:
   - component: {fileID: 1859929303}
   - component: {fileID: 1859929302}
   - component: {fileID: 1859929301}
-  m_Layer: 8
+  - component: {fileID: 1859929305}
+  m_Layer: 10
   m_Name: Goblin
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -3292,6 +3373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e0a93f82c69ec7459bff12897be42e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  velocity: {x: 0, y: 0, z: 0}
   accelerationTimeGrounded: 0.02
   accelerationTimeAirborne: 0.06
   moveSpeed: 2
@@ -3319,10 +3401,12 @@ MonoBehaviour:
   - {fileID: 5812460320343354362, guid: 46bc3192dabaec94c89552df5de051bd, type: 3}
   hitF: {fileID: 0}
   dieF: {fileID: 0}
-  frameRate: 6
+  frameRate: 5
   player: {fileID: 845841519}
   attackDistance: 1.1
-  attackTime: 0
+  knockback: {x: 2, y: 6}
+  gotHit: 0
+  stunTime: 40
 --- !u!114 &1859929302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3387,6 +3471,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1859929305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859929300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1e805db947867945908b9a20c1e1a94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!213 &1880700467
 Sprite:
   m_ObjectHideFlags: 0
@@ -3645,7 +3741,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!199 &1967412982
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -8522,7 +8618,8 @@ GameObject:
   - component: {fileID: 2079454363}
   - component: {fileID: 2079454362}
   - component: {fileID: 2079454361}
-  m_Layer: 8
+  - component: {fileID: 2079454364}
+  m_Layer: 0
   m_Name: GoblinVFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8616,5 +8713,17 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db991052ebb535c43a560c73c09ed148, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2079454364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2079454359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1e805db947867945908b9a20c1e1a94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

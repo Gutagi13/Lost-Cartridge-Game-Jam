@@ -25,7 +25,8 @@ public class Player : MonoBehaviour
     public Vector2 wallJumpOff;
     public Vector2 wallLeap;
 
-    float gravity;
+    [HideInInspector]
+    public float gravity;
     float maxJumpVelocity;
     float minJumpVelocity;
     public Vector3 velocity;
@@ -40,6 +41,16 @@ public class Player : MonoBehaviour
     float timeSinceGround;
     float timeSinceWall;
     public float coyoteTime;
+
+    int dir = 1;
+    public ContactFilter2D cF;
+    List<Collider2D> c = new List<Collider2D>();
+    public Vector2 knockback;
+
+    public bool gotHit;
+    int hitTime;
+    public int stunTime;
+    public int frameRate;
 
     void Start()
     {
@@ -63,6 +74,11 @@ public class Player : MonoBehaviour
         }
 
         controller.Move(velocity * Time.deltaTime, directionalInput);
+        if (directionalInput.x != 0)
+        {
+            dir = (int)Mathf.Sign(directionalInput.x);
+        }
+        transform.localScale = new Vector3(dir, 1, 1);
 
         if (controller.collisions.above || controller.collisions.below)
         {
@@ -76,6 +92,36 @@ public class Player : MonoBehaviour
 
         timeSinceGround = controller.collisions.below ? 0 : timeSinceGround +Time.deltaTime;
         timeSinceWall = wallSliding ? 0 : timeSinceWall + Time.deltaTime;
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            GetComponentInChildren<CapsuleCollider2D>().OverlapCollider(cF, c);
+            foreach(Collider2D col in c)
+            {
+                if (col.gameObject.TryGetComponent(out CombatSystem combat))
+                {
+                    combat.hit((int)Mathf.Sign(col.transform.position.x-transform.position.x),knockback);
+                }
+            }
+        }
+
+        if (gotHit)
+        {
+            hitTime++;
+            if (hitTime % frameRate == 0)
+            {
+                GetComponentInChildren<SpriteRenderer>().enabled ^= true;
+            }
+            if (hitTime > stunTime)
+            {
+                gotHit = false;
+                GetComponentInChildren<SpriteRenderer>().enabled = true;
+            }
+        }
+        else
+        {
+            hitTime = 0;
+        }
     }
 
     public void SetDirectionalInput(Vector2 input)
@@ -154,7 +200,16 @@ public class Player : MonoBehaviour
     void  CalculateVelocity()
     {
         float targetvelocityX = directionalInput.x * moveSpeed;
-        velocity.x = Mathf.SmoothDamp(velocity.x, targetvelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
+        if (!gotHit)
+        {
+            velocity.x = Mathf.SmoothDamp(velocity.x, targetvelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
+        }
+        else if (controller.collisions.below && velocity.y <= 0)
+        {
+            velocity.x = 0;
+        }
         velocity.y += gravity * Time.deltaTime;
     }
+
+
 }
