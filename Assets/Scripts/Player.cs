@@ -117,7 +117,7 @@ public class Player : MonoBehaviour
         }
 
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !isAttacking)
         {
             GetComponentInChildren<CapsuleCollider2D>().OverlapCollider(cF, c);
             isAttacking = true;
