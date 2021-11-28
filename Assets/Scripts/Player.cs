@@ -103,8 +103,10 @@ public class Player : MonoBehaviour
     void CalculateTilemap()
     {
         Vector3Int pos = map.WorldToCell(transform.position+Vector3.down*0.3f);
+        Vector3Int pos2 = map.WorldToCell(transform.position + Vector3.down*-0.1f);
         TileBase cTile = map.GetTile(pos);
-        if(cTile == chest && nKeys>=1)
+        TileBase cTile2 = map.GetTile(pos2);
+        if (cTile == chest && nKeys>=1)
         {
             nKeys--;
             lifes = 3;
@@ -127,6 +129,28 @@ public class Player : MonoBehaviour
             nKeys++;
         }
         else if (cTile == flag)
+        {
+            SceneManager.LoadScene(2);
+        }
+
+        if (cTile2 == chest && nKeys >= 1)
+        {
+            nKeys--;
+            lifes = 3;
+            map.SetTile(pos2, null);
+
+        }
+        else if (cTile2 == coin)
+        {
+            map.SetTile(pos2, null);
+            nCoins++;
+        }
+        else if (cTile2 == key)
+        {
+            map.SetTile(pos2, null);
+            nKeys++;
+        }
+        else if (cTile2 == flag)
         {
             SceneManager.LoadScene(2);
         }
