@@ -27,6 +27,14 @@ public class CombatSystem : MonoBehaviour
             goblin.velocity = vel;
             goblin.gotHit = true;
         }
+        else if (TryGetComponent(out shooterAI shooter))
+        {
+            if (!shooter.hidden)
+            {
+                shooter.gotHit = true;
+            }
+
+        }
 
     }
 }

@@ -47358,6 +47358,7 @@ MonoBehaviour:
   timeToJumpApex: 0.4
   accelerationTimeAirborne: 0.05
   accelerationTimeGrounded: 0.03
+  moveSpeed: 6
   wallSlideSpeedMax: 3
   wallStickTime: 0.05
   wallJumpAbility: 0
@@ -47396,6 +47397,17 @@ MonoBehaviour:
   - {fileID: -7446026091647042388, guid: 3a8727ef6a68dac4095543fece37e621, type: 3}
   - {fileID: 5938012242645255967, guid: 3a8727ef6a68dac4095543fece37e621, type: 3}
   hitF: {fileID: 0}
+  jumpAC: []
+  slashAC: []
+  deathAC: {fileID: 0}
+  map: {fileID: 0}
+  chest: {fileID: 0}
+  coin: {fileID: 0}
+  key: {fileID: 0}
+  spikes: {fileID: 0}
+  lifes: 3
+  lifesS: []
+  transitionAnim: {fileID: 0}
 --- !u!114 &845841515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47598,6 +47610,8 @@ MonoBehaviour:
   knockback: {x: 2, y: 6}
   gotHit: 0
   stunTime: 40
+  club: []
+  death: {fileID: 0}
 --- !u!114 &1859929302
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Controller2D))]
 public class Player : MonoBehaviour
@@ -58,6 +61,32 @@ public class Player : MonoBehaviour
     int frameCount;
     bool isAttacking;
 
+    public AudioClip[] jumpAC;
+    public AudioClip[] slashAC;
+    public AudioClip deathAC;
+    public Tilemap map;
+
+    public TileBase chest;
+    public TileBase coin;
+    public TileBase key;
+    public TileBase spikes;
+    public TileBase flag;
+
+    public int lifes = 3;
+    public Sprite[] lifesS;
+    public Animator transitionAnim;
+    int nKeys;
+    int nCoins;
+
+    IEnumerator LoadScene()
+    {
+        Camera.main.GetComponent<AudioSource>().Stop();
+        Camera.main.GetComponent<AudioSource>().PlayOneShot(deathAC, 1f);
+        transitionAnim.SetTrigger("End");
+        yield return new WaitForSeconds(4.25f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     void Start()
     {
         controller = GetComponent<Controller2D>();
@@ -71,8 +100,49 @@ public class Player : MonoBehaviour
         Application.targetFrameRate = 60;
     }
 
+    void CalculateTilemap()
+    {
+        Vector3Int pos = map.WorldToCell(transform.position+Vector3.down*0.3f);
+        TileBase cTile = map.GetTile(pos);
+        if(cTile == chest && nKeys>=1)
+        {
+            nKeys--;
+            lifes = 3;
+            map.SetTile(pos, null);
+
+        }
+        else if (cTile == coin)
+        {
+            map.SetTile(pos, null);
+            nCoins++;
+        }
+        else if (cTile == spikes && lifes>=0)
+        {
+            StartCoroutine(LoadScene());
+            lifes = -1;
+        }
+        else if (cTile == key)
+        {
+            map.SetTile(pos, null);
+            nKeys++;
+        }
+        else if (cTile == flag)
+        {
+            SceneManager.LoadScene(2);
+        }
+    }
+
     void Update()
     {
+        GameObject.Find("KeyText").GetComponent<Text>().text = nKeys.ToString();
+        GameObject.Find("CoinText").GetComponent<Text>().text = nCoins.ToString();
+        if (lifes==0)
+        {
+            StartCoroutine(LoadScene());
+            lifes--;
+        }
+        GameObject.Find("Health").GetComponent<SpriteRenderer>().sprite = lifesS[Mathf.Max(lifes-1,0)];
+        CalculateTilemap();
         CalculateVelocity();
         if (wallJumpAbility)
         {
@@ -122,6 +192,7 @@ public class Player : MonoBehaviour
             GetComponentInChildren<CapsuleCollider2D>().OverlapCollider(cF, c);
             isAttacking = true;
             frameCount = -1;
+            gameObject.GetComponent<AudioSource>().PlayOneShot(slashAC[Mathf.FloorToInt(Random.Range(0, slashAC.Length))]);
             foreach (Collider2D col in c)
             {
                 if (col.gameObject.TryGetComponent(out CombatSystem combat))
@@ -144,6 +215,10 @@ public class Player : MonoBehaviour
             {
                 gotHit = false;
                 GetComponentInChildren<SpriteRenderer>().enabled = true;
+            }
+            if (hitTime == 1)
+            {
+                lifes--;
             }
         }
         else
@@ -180,8 +255,11 @@ public class Player : MonoBehaviour
         }
         if (timeSinceGround <= coyoteTime)
         {
+
             velocity.y = maxJumpVelocity;
             timeSinceGround += 1 + coyoteTime;
+            //gameObject.GetComponent<AudioSource>().PlayOneShot(jumpAC[Mathf.FloorToInt(Random.Range(0,jumpAC.Length))]);
+            gameObject.GetComponent<AudioSource>().PlayOneShot(jumpAC[2]);
         }
     }
 

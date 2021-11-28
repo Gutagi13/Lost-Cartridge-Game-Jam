@@ -34,16 +34,26 @@ public class GoblinAI : MonoBehaviour
     int hitTime;
     public int stunTime;
 
+    AudioSource source;
+    public AudioClip[] club;
+    public AudioClip death;
+    int lifes = 3;
+
     void Start()
     {
         //Setup
         controller = GetComponent<Controller2D>();
         directionalInput = Vector2.right;
         gravity = player.GetComponent<Player>().gravity;
+        source = gameObject.AddComponent<AudioSource>();
     }
 
     void Update()
     {
+        if (lifes <= 0)
+        {
+            Destroy(gameObject,0.65f);
+        }
         //Change Direction
         RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, distance, obstacles);
         if (directionalInput.x>0 ? controller.collisions.right : controller.collisions.left || groundInfo.collider==false && controller.collisions.below)
@@ -86,11 +96,16 @@ public class GoblinAI : MonoBehaviour
             if ((float)frameCount / 30 * frameRate==frame && frame % attackF.Length == 4)
             {
                 player.GetComponent<CombatSystem>().hit((int)sign,knockback);
+                source.PlayOneShot(club[Mathf.FloorToInt(Random.Range(0, club.Length))]);
             }
         }
         else
         {
             isAttacking = false;
+        }
+        if (lifes<=0)
+        {
+            currentFrame = dieF;
         }
         GetComponentInChildren<SpriteRenderer>().sprite = currentFrame;
 
@@ -105,6 +120,11 @@ public class GoblinAI : MonoBehaviour
             if (hitTime > stunTime){
                 gotHit = false;
                 GetComponentInChildren<SpriteRenderer>().enabled = true;
+            }
+            if (hitTime == 1)
+            {
+                source.PlayOneShot(death);
+                lifes--;
             }
         }
         else
